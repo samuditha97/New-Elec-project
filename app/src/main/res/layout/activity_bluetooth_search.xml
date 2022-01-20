@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".bluetooth_search"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/theme">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +20,7 @@
             android:layout_marginEnd="2dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/theme"
+            android:backgroundTint="@color/grey"
             android:fontFamily="@font/allerta"
             android:text="SEARCH"
             android:textColor="@color/white"
@@ -33,7 +34,7 @@
             android:layout_marginLeft="2dp"
             android:layout_marginRight="1dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/theme"
+            android:backgroundTint="@color/grey"
             android:fontFamily="@font/allerta"
             android:text="CONNECT"
             android:textColor="@color/white"
