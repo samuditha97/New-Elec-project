@@ -20,14 +20,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KlnResearch">
         <activity
-            android:name=".Test_select"
-            android:exported="false" />
+            android:name=".Controlling"
+            android:exported="true" />
         <activity
             android:name=".bluetooth_search"
-            android:exported="false" />
-        <activity
-            android:name=".Controlling"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

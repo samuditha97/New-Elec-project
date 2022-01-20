@@ -32,23 +32,17 @@ public class Controlling extends Activity {
     private Button mBtnDisconnect;
     private BluetoothDevice mDevice;
 
-    final static String on="92";//on
-    final static String off="79";//off
-
 
     private ProgressDialog progressDialog;
-    Button btnOn,btnOff;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_controlling);
+        setContentView(R.layout.activity_test_select);
 
         Activity_Helper.initialize(this);
         // mBtnDisconnect = (Button) findViewById(R.id.btnDisconnect);
-        btnOn=(Button)findViewById(R.id.on);
-        btnOff=(Button)findViewById(R.id.off);
 
 
 
@@ -60,47 +54,6 @@ public class Controlling extends Activity {
         mMaxChars = b.getInt(bluetooth_search.BUFFER_SIZE);
 
         Log.d(TAG, "Ready");
-
-
-
-
-
-        btnOn.setOnClickListener(new View.OnClickListener()
-        {
-
-            @Override
-            public void onClick(View v) {
-// TODO Auto-generated method stub
-
-
-
-                try {
-                    mBTSocket.getOutputStream().write(on.getBytes());
-
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }});
-
-        btnOff.setOnClickListener(new View.OnClickListener()
-        {
-
-            @Override
-            public void onClick(View v) {
-// TODO Auto-generated method stub
-
-
-
-                try {
-                    mBTSocket.getOutputStream().write(off.getBytes());
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }});
-
-
 
 
 
@@ -288,5 +241,4 @@ public class Controlling extends Activity {
         super.onDestroy();
     }
 }
-
 
