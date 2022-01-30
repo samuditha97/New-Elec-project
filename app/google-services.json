@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "985114624584",
+    "project_id": "microcentrifuge-8307c",
+    "storage_bucket": "microcentrifuge-8307c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:985114624584:android:9921231e1e0c975bbf4e7d",
+        "android_client_info": {
+          "package_name": "com.example.klnresearch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "985114624584-ufu7155r7uqj40nsod868f1tenbm4j9v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7TGm3lJ0GR5m7_rJnmB63d4t7uz8zdCQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "985114624584-ufu7155r7uqj40nsod868f1tenbm4j9v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
