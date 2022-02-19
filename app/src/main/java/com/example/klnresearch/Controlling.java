@@ -10,14 +10,35 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.UUID;
 
-public class Controlling extends Activity {
+public class Controlling extends AppCompatActivity {
+
+    EditText name,time,speed,temp;
+    Button save,show;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+
 
     private static final String TAG = "BlueTest5-Controlling";
     private int mMaxChars = 50000;//Default//change this to string..........
@@ -36,15 +57,36 @@ public class Controlling extends Activity {
     private ProgressDialog progressDialog;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_select);
+        name = findViewById(R.id.name);
+        speed = findViewById(R.id.speed);
+        time = findViewById(R.id.time);
+        temp = findViewById(R.id.temp);
+        save = findViewById(R.id.save);
+        show = findViewById(R.id.show_all);
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendData();
+                startActivity(new Intent(Controlling.this,ViewTest.class));
+            }
+        });
+
+        show.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Controlling.this,ViewTest.class));
+            }
+        });
+
 
         Activity_Helper.initialize(this);
         // mBtnDisconnect = (Button) findViewById(R.id.btnDisconnect);
-
-
 
 
         Intent intent = getIntent();
@@ -54,6 +96,22 @@ public class Controlling extends Activity {
         mMaxChars = b.getInt(bluetooth_search.BUFFER_SIZE);
 
         Log.d(TAG, "Ready");
+
+    }
+
+    private void sendData() {
+
+            String namesend = name.getText().toString();
+            String speedsend = speed.getText().toString();
+            String timesend = time.getText().toString();
+            String tempsend = temp.getText().toString();
+            firebaseDatabase = FirebaseDatabase.getInstance();
+            databaseReference = firebaseDatabase.getReference("MCDataBase").push();
+            SenderModel senderModel = new SenderModel(namesend, speedsend, timesend, tempsend);
+            databaseReference.setValue(senderModel);
+
+
+            Toast.makeText(this, "successfull", Toast.LENGTH_SHORT).show();
 
 
 
@@ -240,5 +298,6 @@ public class Controlling extends Activity {
         // TODO Auto-generated method stub
         super.onDestroy();
     }
+
 }
 
