@@ -20,6 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KlnResearch">
         <activity
+            android:name=".ViewTest"
+            android:exported="false" />
+        <activity
             android:name=".Controlling"
             android:exported="true" />
         <activity

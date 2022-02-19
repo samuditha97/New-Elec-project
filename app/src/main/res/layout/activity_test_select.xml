@@ -14,113 +14,85 @@
       android:layout_height="wrap_content"
       android:orientation="vertical">
 
-      <com.google.android.material.textfield.TextInputLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:hint="Test Name"
-          app:startIconDrawable="@drawable/teset_name_icon"
-          style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-          app:startIconTint="@color/white"
-          app:hintTextColor="@color/white"
-          android:textColorHint="@color/white"
-          app:endIconMode="clear_text"
-          app:endIconTint="@color/black"
-          app:boxStrokeWidthFocused="2dp"
-          app:boxStrokeColor="@color/black"
-          android:layout_marginTop="20dp">
 
-          <com.google.android.material.textfield.TextInputEditText
+          <EditText
               android:id="@+id/name"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:inputType="text"
-              android:textColor="@color/black" />
+              android:textColor="@color/black"
+              android:hint="Test Name"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintHorizontal_bias="0.5"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent"
+              android:minHeight="48dp"
+              android:padding="10dp"/>
 
-      </com.google.android.material.textfield.TextInputLayout>
 
-      <com.google.android.material.textfield.TextInputLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:hint="Speed"
-          app:startIconDrawable="@drawable/speed_icon"
-          style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-          app:startIconTint="@color/white"
-          app:hintTextColor="@color/white"
-          android:textColorHint="@color/white"
-          app:endIconMode="clear_text"
-          app:endIconTint="@color/black"
-          app:boxStrokeWidthFocused="2dp"
-          app:boxStrokeColor="@color/black"
-          android:layout_marginTop="20dp">
 
-          <com.google.android.material.textfield.TextInputEditText
+          <EditText
               android:id="@+id/speed"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:inputType="numberDecimal"
-              android:textColor="@color/black" />
+              android:textColor="@color/black"
+              android:hint="Speed"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintHorizontal_bias="0.5"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent"
+              android:minHeight="48dp"
+              android:padding="10dp"
+              android:layout_marginTop="70dp"/>
 
-      </com.google.android.material.textfield.TextInputLayout>
 
-      <com.google.android.material.textfield.TextInputLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:hint="Time"
-          app:startIconDrawable="@drawable/time"
-          style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-          app:startIconTint="@color/white"
-          app:hintTextColor="@color/white"
-          android:textColorHint="@color/white"
-          app:endIconMode="clear_text"
-          app:endIconTint="@color/black"
-          app:boxStrokeWidthFocused="2dp"
-          app:boxStrokeColor="@color/black"
-          android:layout_marginTop="20dp">
-
-          <com.google.android.material.textfield.TextInputEditText
+          <EditText
               android:id="@+id/time"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:inputType="time"
-              android:textColor="@color/black" />
+              android:textColor="@color/black"
+              android:hint="Time(Min)"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintHorizontal_bias="0.5"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent"
+              android:minHeight="48dp"
+              android:padding="10dp"
+              android:layout_marginTop="70dp"
+              />
 
-      </com.google.android.material.textfield.TextInputLayout>
 
-      <com.google.android.material.textfield.TextInputLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:hint="Tempurature"
-          app:startIconDrawable="@drawable/temp_icon"
-          style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-          app:startIconTint="@color/white"
-          app:hintTextColor="@color/white"
-          android:textColorHint="@color/white"
-          app:endIconMode="clear_text"
-          app:endIconTint="@color/black"
-          app:boxStrokeWidthFocused="2dp"
-          app:boxStrokeColor="@color/black"
-          android:layout_marginTop="20dp">
 
-          <com.google.android.material.textfield.TextInputEditText
+          <EditText
               android:id="@+id/temp"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:inputType="numberDecimal"
-              android:textColor="@color/black" />
+              android:textColor="@color/black"
+              android:hint="Temperature(celsius)"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintHorizontal_bias="0.5"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent"
+              android:minHeight="48dp"
+              android:padding="10dp"
+              android:layout_marginTop="70dp"/>
 
-      </com.google.android.material.textfield.TextInputLayout>
 
 </LinearLayout>
     <Button
         android:id="@+id/save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="80dp"
         android:backgroundTint="@color/grey"
         android:elevation="5dp"
         android:fontFamily="@font/allerta"
         android:text="SAVE"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        />
 
     <Button
         android:id="@+id/show_all"
