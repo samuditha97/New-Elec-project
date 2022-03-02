@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.bluetooth.BluetoothSocket;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -15,6 +16,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 
 public class ViewTest extends AppCompatActivity {
@@ -23,6 +26,9 @@ public class ViewTest extends AppCompatActivity {
     ArrayList<SenderModel> list;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    private InputStream mmInStream;
+    private BluetoothSocket mBTSocket;
+    private OutputStream mmOutStream;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +40,7 @@ public class ViewTest extends AppCompatActivity {
         databaseReference=firebaseDatabase.getReference("MCDataBase");
         new ItemTouchHelper(itemTouchHelper).attachToRecyclerView(recyclerView);
         list=new ArrayList<>();
-        viewAdapterModel=new ViewAdapterModel(this,list);
+        viewAdapterModel=new ViewAdapterModel(this,list, mBTSocket, mmInStream, mmOutStream);
         recyclerView.setAdapter(viewAdapterModel);
 
         databaseReference.addValueEventListener(new ValueEventListener() {

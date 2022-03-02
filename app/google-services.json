@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "985114624584",
-    "project_id": "microcentrifuge-8307c",
-    "storage_bucket": "microcentrifuge-8307c.appspot.com"
+    "project_number": "813471895719",
+    "firebase_url": "https://centrifuge-5983e-default-rtdb.firebaseio.com",
+    "project_id": "centrifuge-5983e",
+    "storage_bucket": "centrifuge-5983e.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:985114624584:android:9921231e1e0c975bbf4e7d",
+        "mobilesdk_app_id": "1:813471895719:android:f38acd1bc71e037f020b82",
         "android_client_info": {
           "package_name": "com.example.klnresearch"
         }
       },
       "oauth_client": [
         {
-          "client_id": "985114624584-ufu7155r7uqj40nsod868f1tenbm4j9v.apps.googleusercontent.com",
+          "client_id": "813471895719-7o109ouiamdvdbk7m2eb3rfv1athvvis.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA7TGm3lJ0GR5m7_rJnmB63d4t7uz8zdCQ"
+          "current_key": "AIzaSyDvjoQRa4kgajV20g0Mdj69jSQvZB3wn6g"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "985114624584-ufu7155r7uqj40nsod868f1tenbm4j9v.apps.googleusercontent.com",
+              "client_id": "813471895719-7o109ouiamdvdbk7m2eb3rfv1athvvis.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

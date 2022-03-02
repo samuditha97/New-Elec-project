@@ -1,9 +1,9 @@
 package com.example.klnresearch;
 
 import android.app.AlertDialog;
+import android.bluetooth.BluetoothSocket;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.RestrictionEntry;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,18 +14,28 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 
 public class ViewAdapterModel extends RecyclerView.Adapter<ViewAdapterModel.MyViewHolder> {
 
     Context context;
     ArrayList<SenderModel> list;
+    private BluetoothSocket mBTSocket;
+    private final InputStream mmInStream;
+    private final OutputStream mmOutStream;
+    final static int val = 0;
 
 
 
-    public ViewAdapterModel(Context context, ArrayList<SenderModel> list) {
+    public ViewAdapterModel(Context context, ArrayList<SenderModel> list, BluetoothSocket mBTSocket, InputStream mmInStream, OutputStream mmOutStream) {
         this.context = context;
         this.list = list;
+        this.mBTSocket = mBTSocket;
+        this.mmInStream = mmInStream;
+        this.mmOutStream = mmOutStream;
     }
 
     @NonNull
@@ -57,6 +67,11 @@ public class ViewAdapterModel extends RecyclerView.Adapter<ViewAdapterModel.MyVi
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Log.i("Result","Success");
+                                /*try {
+                                    mBTSocket.getOutputStream().write();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }*/
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -82,7 +97,7 @@ public class ViewAdapterModel extends RecyclerView.Adapter<ViewAdapterModel.MyVi
 
 
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView name,speed,time,temp;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
