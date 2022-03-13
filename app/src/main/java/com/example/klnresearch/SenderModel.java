@@ -13,7 +13,7 @@ public class SenderModel {
         this.tempsend = tempsend;
     }
 
-    public SenderModel() {
+    public SenderModel(String namesend, Integer speedsend, String timesend, String tempsend) {
     }
 
     public String getNamesend() {

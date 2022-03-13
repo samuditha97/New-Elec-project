@@ -90,7 +90,7 @@
         android:backgroundTint="@color/grey"
         android:elevation="5dp"
         android:fontFamily="@font/allerta"
-        android:text="SAVE"
+        android:text="RUN"
         android:textColor="@color/white"
         />
 

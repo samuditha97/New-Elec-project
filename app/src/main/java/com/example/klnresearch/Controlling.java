@@ -1,40 +1,41 @@
 package com.example.klnresearch;
 
+import static com.example.klnresearch.ViewAdapterModel.val;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
+import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.UUID;
 
 public class Controlling extends AppCompatActivity {
 
-    EditText name,time,speed,temp;
+    EditText name;
+    EditText time;
+    EditText speed;
+    EditText temp;
     Button save,show;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -52,10 +53,14 @@ public class Controlling extends AppCompatActivity {
 
     private Button mBtnDisconnect;
     private BluetoothDevice mDevice;
+    OutputStream mmOutputStream;
+    InputStream mmInputStream;
 
 
     private ProgressDialog progressDialog;
 
+
+    private int val;
 
 
     @Override
@@ -72,8 +77,16 @@ public class Controlling extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendData();
-                startActivity(new Intent(Controlling.this,ViewTest.class));
+                try {
+                    sendData();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                /*try {
+                    mBTSocket.getOutputStream().write(val);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }*/
             }
         });
 
@@ -97,12 +110,22 @@ public class Controlling extends AppCompatActivity {
 
         Log.d(TAG, "Ready");
 
+
     }
 
-    private void sendData() {
+   private void sendData() throws IOException {
 
-            String namesend = name.getText().toString();
-            String speedsend = speed.getText().toString();
+        try {
+           String val = speed.getText().toString();
+            mBTSocket.getOutputStream().write(val.getBytes());
+
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+             /*String speedsend = speed.getText().toString();
+           String namesend = name.getText().toString();
             String timesend = time.getText().toString();
             String tempsend = temp.getText().toString();
             firebaseDatabase = FirebaseDatabase.getInstance();
@@ -111,13 +134,13 @@ public class Controlling extends AppCompatActivity {
             databaseReference.setValue(senderModel);
 
 
-            Toast.makeText(this, "successfull", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "successfull", Toast.LENGTH_SHORT).show();*/
 
 
 
     }
 
-    private class ReadInput implements Runnable {
+    class ReadInput implements Runnable {
 
         private boolean bStop = false;
         private Thread t;

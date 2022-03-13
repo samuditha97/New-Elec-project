@@ -1,9 +1,15 @@
 package com.example.klnresearch;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,16 +24,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.UUID;
 
-public class ViewAdapterModel extends RecyclerView.Adapter<ViewAdapterModel.MyViewHolder> {
+public class ViewAdapterModel extends RecyclerView.Adapter<ViewAdapterModel.MyViewHolder>{
 
     Context context;
     ArrayList<SenderModel> list;
     private BluetoothSocket mBTSocket;
+    private BluetoothDevice mDevice;
     private final InputStream mmInStream;
     private final OutputStream mmOutStream;
     final static int val = 0;
-
 
 
     public ViewAdapterModel(Context context, ArrayList<SenderModel> list, BluetoothSocket mBTSocket, InputStream mmInStream, OutputStream mmOutStream) {
@@ -36,54 +43,65 @@ public class ViewAdapterModel extends RecyclerView.Adapter<ViewAdapterModel.MyVi
         this.mBTSocket = mBTSocket;
         this.mmInStream = mmInStream;
         this.mmOutStream = mmOutStream;
+
     }
+
+
+
 
     @NonNull
     @Override
     public ViewAdapterModel.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.viewmodel,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.viewmodel, parent, false);
 
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        SenderModel senderModel=list.get(position);
+        SenderModel senderModel = list.get(position);
         holder.name.setText(senderModel.getNamesend().toString());
         holder.speed.setText(senderModel.getSpeedsend().toString());
         holder.time.setText(senderModel.getTimesend().toString());
         holder.temp.setText(senderModel.getTempsend().toString());
 
-      holder.itemView.setOnClickListener(new View.OnClickListener() {
+
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Display a toast message to user
                 //display the title of the test
-                Toast.makeText(context, "clicked:"+senderModel.getNamesend(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "clicked:" + senderModel.getNamesend(), Toast.LENGTH_SHORT).show();
                 new AlertDialog.Builder(context)
-                        .setMessage("Test: "+senderModel.getNamesend())
+                        .setMessage("Test: " + senderModel.getNamesend())
                         .setTitle("Do you want to run?")
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Log.i("Result","Success");
-                                /*try {
-                                    mBTSocket.getOutputStream().write();
+                                Log.i("Result", "Success");
+
+                                try {
+                                    mBTSocket.getOutputStream().write("0".toString().getBytes());
                                 } catch (IOException e) {
                                     e.printStackTrace();
-                                }*/
+                                }
+                                dialog.dismiss();
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Log.i("Result","Success");
+                                Log.i("Result", "Success");
+
+                                dialog.dismiss();
                             }
                         })
                         .show();
             }
 
         });
+
 
     }
 
@@ -92,13 +110,13 @@ public class ViewAdapterModel extends RecyclerView.Adapter<ViewAdapterModel.MyVi
         return list.size();
     }
 
-    public void deleteData(ArrayList<SenderModel> list ) {
+    public void deleteData(ArrayList<SenderModel> list) {
     }
 
 
-
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView name,speed,time,temp;
+        TextView name, speed, time, temp;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.nameValue);
